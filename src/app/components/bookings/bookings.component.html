@@ -1,0 +1,98 @@
+<div class="container-fluid mt-4 text-center">
+	<h1> Booking Form </h1>
+	<h3> Book a cab within minutes, anytime of the day. Fixed Rate.</h3>
+</div>
+<table class="table table-striped table-hover container">
+	<thead>
+	<tr>
+		<th>Type of Vehicle</th>
+		<th>Price per KM</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>4 Wheeler</td>
+		<td> ₹20</td>
+	</tr>
+	<tr>
+		<td>3 Wheeler</td>
+		<td> ₹15</td>
+	</tr>
+	<tr>
+		<td>2 Wheeler</td>
+		<td> ₹12</td>
+	</tr>
+	</tbody>
+</table>
+<div class="container col-lg-6">
+	<div class="form mt-lg-5">
+		<form (ngSubmit)="addBooking()" [formGroup]="bookingForm" class="needs-validation" novalidate>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="fullname-input">Full Name: </label>
+				<input class="form-control" formControlName="fullname" id="fullname-input" required type="text">
+				<div *ngIf="bookingForm.controls['fullname'].hasError('required')" class="invalid-feedback">
+					Name cannot be blank
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="contact-input">Contact: </label>
+				<input class="form-control" formControlName="contact" id="contact-input" pattern="^[789]\d{9}" required
+					   type="text">
+				<div *ngIf="bookingForm.controls['contact'].hasError('required')" class="invalid-feedback">
+					Contact cannot be blank
+				</div>
+				<div *ngIf="bookingForm.controls['contact'].hasError('pattern')" class="invalid-feedback">
+					Contact must be 10 digits and begin with 7/8/9
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="fromlocation-input">Pickup Location: </label>
+				<input class="form-control" formControlName="fromlocation" id="fromlocation-input" required type="text">
+				<div *ngIf="bookingForm.controls['fromlocation'].hasError('required')" class="invalid-feedback">
+					Enter Pickup Location
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="tolocation-input">Drop Location: </label>
+				<input class="form-control" formControlName="tolocation" id="tolocation-input" required type="text">
+				<div *ngIf="bookingForm.controls['tolocation'].hasError('required')" class="invalid-feedback">
+					Enter Drop Location
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="vehicle-input">Vehicle Type: </label>
+				<input class="form-control" formControlName="vehicle" id="vehicle-input" required type="text">
+				<div *ngIf="bookingForm.controls['vehicle'].hasError('required')" class="invalid-feedback">
+					Enter Type of Cab
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="distance-input">Distance In KM: </label>
+				<input class="form-control" formControlName="distance" id="distance-input" required type="number">
+				<div *ngIf="bookingForm.controls['vehicle'].hasError('required')" class="invalid-feedback">
+					Enter Distance greater than 0
+				</div>
+			</div>
+			<div class="mt-lg-3 mb-lg-3">
+				<label class="form-label" for="price-input"> Price: </label>
+				<input class="form-control" formControlName="distance" id="price-input" required type="number">
+				<div *ngIf="bookingForm.controls['vehicle'].hasError('required')" class="invalid-feedback">
+					Enter Price
+				</div>
+			</div>
+			<div class="buttons mt-lg-3 mb-lg-3">
+				<div class="mt-lg-3 mb-lg-3">
+					<button class="btn btn-success col-lg-12" type="submit"> Book Ride</button>
+				</div>
+				<div class="mt-lg-3 mb-lg-3">
+					<button class="btn btn-danger col-lg-12" type="reset"> Reset Booking</button>
+				</div>
+				<div class="mt-lg-3 mb-lg-3">
+					<button class="btn btn-primary col-lg-12" routerLink="/history" type="button">
+						Show Recent Bookings History
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
